@@ -12,11 +12,24 @@ Node v14.15.1 or greater
 
 `./generate.sh [qari/rawi]`
 
-For example:
-
 `./generate.sh abu_amr/duri`
 
-will generate a dataset for Ad-Duri from Abu 'Amr Al-Basri.
+Will generate a dataset for Ad-Duri from Abu 'Amr Al-Basri. Example:
+
+```json
+{
+	"title": "سُورَةُ الفَلَقِ",
+	"numChapter": 113,
+	"numVerses": 5,
+	"verses": [
+		"قُلۡ أَعُوذُ بِرَبِّ ٱلۡفَلَقِ",
+		"مِن شَرِّ مَا خَلَقَ",
+		"وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ",
+		"وَمِن شَرِّ ٱلنَّفَّٰثَٰتِ فِي ٱلۡعُقَدِ",
+		"وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ"
+	]
+}
+```
 
 ## License & Intent
 
