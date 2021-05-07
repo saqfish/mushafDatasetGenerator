@@ -20,7 +20,7 @@ will generate a dataset for Ad-Duri from Abu 'Amr Al-Basri.
 
 ## License & Intent
 
-[Generator license](../master/LICENSE)
-[Quran text usage permission](../master/LICENSE)
+[Generator license](../master/LICENSE)<br>
+[Quran text usage permission](../master/LICENSE-mushaf)
 
 This project is for the sake of Allah and hopes to help promote the Quran. If you have ill intent or are looking for a quick buck, go elsewhere.
