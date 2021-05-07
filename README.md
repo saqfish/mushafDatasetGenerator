@@ -1,12 +1,6 @@
-## Table of Contents
-**[Depdendencies](#dependencies)**<br>
-**[Usage](#usage)**<br>
-**[License](#license)**<br>
-
-
 ## Depdendencies
 
-Node v14.15.1 or greater
+* `nodejs v14.15.1` or greater
 
 ## Usage
 
