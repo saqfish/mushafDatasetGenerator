@@ -1,11 +1,11 @@
 const { cleanArray } = require("./util");
-const { tawbahFilter, bismillahFilter, chapterFilter } = require("./filter");
 
 const newChapter = () => {
   return { title: "", numChapter: 0, numVerses: 0, verses: [] };
 };
 
-const parseVerses = (text) => {
+const parseVerses = (text, filters) => {
+  const { tawbahFilter, bismillahFilter, chapterFilter } = filters;
   const joined = text.join(" ");
   const split = joined.match(/[^\u0660-\u0669]+/g);
   const seperated = [];
@@ -33,7 +33,7 @@ const parseVerses = (text) => {
         verse = b[2];
       }
       chapter.title = b[0];
-      if(verse) chapter.verses.push(verse.trim());
+      if (verse) chapter.verses.push(verse.trim());
     } else chapter.verses.push(s);
     chapter.numVerses++;
   });
@@ -49,9 +49,9 @@ const parsePages = (text) => {
   return parsed;
 };
 
-const parse = (raw) => {
+const parse = (raw, filters) => {
   const pages = [];
-  const verses = parseVerses(raw);
+  const verses = parseVerses(raw, filters);
   raw.forEach((line, i) => {
     const parr = parsePages(line);
     pages.push(parr);
