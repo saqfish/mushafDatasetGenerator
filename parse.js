@@ -33,7 +33,7 @@ const parseVerses = (text) => {
         verse = b[2];
       }
       chapter.title = b[0];
-      chapter.verses.push(verse);
+      if(verse) chapter.verses.push(verse.trim());
     } else chapter.verses.push(s);
     chapter.numVerses++;
   });
