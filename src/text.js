@@ -6,9 +6,9 @@ const run = async () => {
   const filenames = generateFileNames(path);
   const raw = await readRaw(filenames);
   const { pages, verses } = parse(raw);
-  write(`generated/${path}/raw.json`, raw);
-  write(`generated/${path}/pages.json`, pages);
-  write(`generated/${path}/verses.json`, verses);
+  write(`out/${path}/raw.json`, raw);
+  write(`out/${path}/pages.json`, pages);
+  write(`out/${path}/verses.json`, verses);
 };
 
 run();

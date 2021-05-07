@@ -1,6 +1,5 @@
 var util = require("util");
-const log = (output) =>
-  console.log(util.inspect(output, { maxArrayLength: null }));
+const log = (output) => console.log(`Log: ${output}`);
 
 const cleanArray = (arr) => {
   let cleaned = [];

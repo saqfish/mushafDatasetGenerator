@@ -1,4 +1,6 @@
-var fs = require("fs");
+const fs = require("fs");
+const {log} = require('./util');
+
 const generateFileNames = (path) => {
   const filenames = [];
   for (let i = 1; i < 605; i++) {
@@ -23,7 +25,8 @@ const readRaw = async (filenames) => {
 
 const write = (filename, data) => {
   const fData = JSON.stringify(data, null, 2);
-  fs.writeFileSync(filename, fData, "utf8");
+  const status = fs.writeFileSync(filename, fData, "utf8");
+  log(`${filename} written`);  
 };
 
 module.exports = { generateFileNames, readRaw, write };
