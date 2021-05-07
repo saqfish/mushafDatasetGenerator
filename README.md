@@ -1,7 +1,7 @@
 ## Table of Contents
-**[Depdendencies](#dependencies)**
-**[Usage](#usage)**
-**[License](#license)**
+**[Depdendencies](#dependencies)**<br>
+**[Usage](#usage)**<br>
+**[License](#license)**<br>
 
 
 
