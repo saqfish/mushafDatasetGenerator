@@ -11,7 +11,7 @@ if mkdir -p out/$1; then
 			exit 1
 		fi
 	done
-	node src/text.js $1
+	node src/generate.js $1
 else
 	echo "Couldn't create out directories"
 fi
