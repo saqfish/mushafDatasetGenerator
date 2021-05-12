@@ -1,4 +1,4 @@
-## Depdendencies
+## Dependencies
 
 * `nodejs v14.15.1` or greater
 
