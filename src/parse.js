@@ -41,13 +41,6 @@ const parseVerses = (text, filters) => {
   return seperated;
 };
 
-const parsePages = (text) => {
-  const parsed = [];
-  const numberless = text.match(/[^\u0660-\u0669]+/g).join(" ");
-  parsed.push(numberless);
-  return parsed;
-};
-
 const parseSections = (text) => {
   let verses = [];
   let compiled = [];
@@ -70,19 +63,17 @@ const parse = (raw, filters) => {
   const pages = [];
   const chapters = parseVerses(raw, filters);
   const sections = parseSections(chapters, filters);
-  let count = 0;
+  let count = 1;
   const verses = [];
   raw.forEach((page, p) => {
-    let parr;
     page.forEach((line, l) => {
       const check = line.match(/[\u0660-\u0669]+/g);
       if (check) {
-        verses.push({ verse: count, page: p, line: l });
+        verses.push({ verse: count, page: p+1, line: l+1 });
         count += check.length;
       }
-      parr = parsePages(line);
     });
-    pages.push(parr);
+    pages.push(page);
   });
   return { pages, chapters, sections, verses };
 };

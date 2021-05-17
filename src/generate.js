@@ -10,7 +10,7 @@ const run = async () => {
   write(`out/${path}/raw.json`, raw.flat());
   write(`out/${path}/pages.json`, pages);
   write(`out/${path}/verses.json`, verses);
-  write(`out/${path}/chapters.json`, verses);
+  write(`out/${path}/chapters.json`, chapters);
   write(`out/${path}/sections.json`, sections);
 };
 
