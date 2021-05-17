@@ -43,10 +43,8 @@ const parseVerses = (text, filters) => {
 
 const parsePages = (text) => {
   const parsed = [];
-  text.forEach((verse, index) => {
-    const numberless = verse.match(/[^\u0660-\u0669]+/g).join(" ");
-    parsed.push(numberless);
-  });
+  const numberless = text.match(/[^\u0660-\u0669]+/g).join(" ");
+  parsed.push(numberless);
   return parsed;
 };
 
@@ -60,24 +58,33 @@ const parseSections = (text) => {
   verses = verses.flat();
   sections.forEach((section) => {
     section.forEach((s) => {
-      juz.push(verses[s.start-2]);
+      juz.push(verses[s.start - 2]);
     });
     compiled.push(juz);
     juz = [];
   });
-  console.log(compiled);
   return compiled;
 };
 
 const parse = (raw, filters) => {
   const pages = [];
-  const verses = parseVerses(raw, filters);
-  const sections = parseSections(verses, filters);
-  raw.forEach((line, i) => {
-    const parr = parsePages(line);
+  const chapters = parseVerses(raw, filters);
+  const sections = parseSections(chapters, filters);
+  let count = 0;
+  const verses = [];
+  raw.forEach((page, p) => {
+    let parr;
+    page.forEach((line, l) => {
+      const check = line.match(/[\u0660-\u0669]+/g);
+      if (check) {
+        verses.push({ verse: count, page: p, line: l });
+        count += check.length;
+      }
+      parr = parsePages(line);
+    });
     pages.push(parr);
   });
-  return { pages, verses, sections };
+  return { pages, chapters, sections, verses };
 };
 
 module.exports = { parse };
