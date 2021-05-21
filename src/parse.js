@@ -51,7 +51,11 @@ const parseSections = (text) => {
   verses = verses.flat();
   sections.forEach((section) => {
     section.forEach((s) => {
-      juz.push(verses[s.start]);
+      const ns = {
+        verse: { text: verses[s.start], number: s.start },
+        page: { ...s.page },
+      };
+      juz.push(ns);
     });
     compiled.push(juz);
     juz = [];
@@ -70,7 +74,7 @@ const parse = (raw, filters) => {
       const check = line.match(/[\u0660-\u0669]+/g);
       if (check) {
         check.forEach(() => {
-          verses.push({ verse: count, page: p, line: l });
+          verses.push({ verse: { text: verse, count }, page: p, line: l });
           count++;
         });
         l++;
