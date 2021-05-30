@@ -6,7 +6,8 @@ const run = async () => {
   const filenames = generateFileNames(path);
   const raw = await readRaw(filenames);
   const filters = require(`../${path}/filter`);
-  const { chapters, sections, verses } = parse(raw, filters);
+  const sectionData = require(`../${path}/sections`);
+  const { chapters, sections, verses } = parse(raw, filters, sectionData);
 
   write(`out/${path}/raw.json`, raw.flat());
   write(`out/${path}/verses.json`, verses);

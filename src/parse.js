@@ -1,5 +1,4 @@
 const { cleanArray } = require("./util");
-const sections = require("./sections");
 
 const newChapter = () => {
   return { title: "", numChapter: 0, numVerses: 0, verses: [] };
@@ -54,7 +53,7 @@ const parseVerses = (text, filters) => {
   return { chapters, verses };
 };
 
-const parseSections = (text) => {
+const parseSections = (text, sections) => {
   let verses = [];
   let compiled = [];
   let juz = [];
@@ -76,9 +75,9 @@ const parseSections = (text) => {
   return compiled;
 };
 
-const parse = (raw, filters) => {
+const parse = (raw, filters, sectionData) => {
   const { chapters, verses } = parseVerses(raw, filters);
-  const sections = parseSections(chapters, filters);
+  const sections = parseSections(chapters, sectionData);
   let count = 0;
   raw.forEach((page, p) => {
     page.forEach((line, l) => {
