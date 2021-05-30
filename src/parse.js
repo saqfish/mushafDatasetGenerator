@@ -6,7 +6,12 @@ const newChapter = () => {
 };
 
 const parseVerses = (text, filters) => {
-  const { tawbahFilter, bismillahFilter, chapterFilter } = filters;
+  const {
+    tawbahFilter,
+    bismillahFilter,
+    chapterFilter,
+    fatihaBismillahSkip,
+  } = filters;
   const joined = text.join(" ");
   const split = joined.match(/[^\u0660-\u0669]+/g);
   const chapters = [];
@@ -16,7 +21,7 @@ const parseVerses = (text, filters) => {
   split.forEach((s, i) => {
     s = s.replace(/,/g, "").trim();
     const match = s.match(chapterFilter);
-    if ((match && i) || i === split.length - 1) {
+    if (match && i) {
       if (chapter.verses.length) {
         order++;
         chapter.numChapter = order;
@@ -33,6 +38,7 @@ const parseVerses = (text, filters) => {
       } else {
         b = cleanArray(s.split(bismillahFilter));
         verse = b[2];
+        if (!fatihaBismillahSkip && !order) verses.push(b[1]);
       }
       chapter.title = b[0];
       if (verse) {
@@ -78,7 +84,7 @@ const parse = (raw, filters) => {
     page.forEach((line, l) => {
       const check = line.match(/[\u0660-\u0669]+/g);
       if (check) {
-        check.forEach(() => {
+        check.forEach((c) => {
           verses[count] = {
             text: verses[count],
             number: count + 1,
